@@ -44,8 +44,27 @@ def merge_sort_in_place(arr, l, r):
 
 # TO-DO: implement the Quick Sort function below USING RECURSION
 def quick_sort( arr, low, high ):
-
+    if low < high:
+        pivot = partition(arr, low, high)
+        quick_sort(arr, low, pivot - 1)
+        quick_sort(arr, pivot + 1, high)
     return arr
+
+def partition(arr, low, high):
+    pivot = high
+    index = low
+    left = low
+    while left < pivot:
+        if arr[left] < arr[pivot]:
+            arr[index], arr[left] = arr[left], arr[index]
+            index = index + 1
+        left = left + 1
+    arr[index], arr[pivot] = arr[pivot], arr[index]
+    pivot = index
+    return pivot
+
+# arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+# print(quick_sort(arr1, 0, len(arr1)-1))
 
 
 # STRETCH: implement the Timsort function below
